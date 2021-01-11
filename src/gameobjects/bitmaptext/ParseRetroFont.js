@@ -5,7 +5,7 @@
  */
 
 var GetValue = require('../../utils/object/GetValue');
-
+var split = require('emoji-aware').split;
 /**
  * Parses a Retro Font configuration object so you can pass it to the BitmapText constructor
  * and create a BitmapText object using a fixed-width retro font.
@@ -62,13 +62,18 @@ var ParseRetroFont = function (scene, config)
     };
 
     var r = 0;
-
-    for (var i = 0; i < letters.length; i++)
+    var charCode;
+    var textChars = split(letters);
+    for (var i = 0; i < textChars.length; i++)
     {
         // var node = letters[i];
 
-        var charCode = letters.codePointAt(i);
-
+        // var charCode = letters.codePointAt(i);
+        charCode = '';
+        for(var j = 0; j<textChars[i].length; j++) {
+            charCode += textChars[i].codePointAt(j); + ' ';
+        }
+        charCode.trim();
         data.chars[charCode] =
         {
             x: x,

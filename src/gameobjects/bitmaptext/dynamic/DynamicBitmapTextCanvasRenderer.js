@@ -5,7 +5,7 @@
  */
 
 var SetTransform = require('../../../renderer/canvas/utils/SetTransform');
-
+var split = require('emoji-aware').split;
 /**
  * Renders this Game Object with the Canvas Renderer to the given Camera.
  * The object will not render if any of its renderFlags are set or it is being actively filtered out by the Camera.
@@ -97,13 +97,20 @@ var DynamicBitmapTextCanvasRenderer = function (renderer, src, interpolationPerc
         ctx.clip();
     }
 
-    for (var i = 0; i < textLength; i++)
+    var textChars = split(text);
+
+    for (var i = 0; i < textChars.length; i++)
     {
         //  Reset the scale (in case the callback changed it)
         scale = baseScale;
         rotation = 0;
 
-        charCode = text.codePointAt(i);
+        // charCode = text.codePointAt(i);
+        charCode = '';
+        for(var j = 0; j<textChars[i].length; j++) {
+            charCode += textChars[i].codePointAt(j); + ' ';
+        }
+        charCode.trim();
 
         if (charCode === 10)
         {

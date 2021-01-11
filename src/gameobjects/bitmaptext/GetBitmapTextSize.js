@@ -3,7 +3,7 @@
  * @copyright    2020 Photon Storm Ltd.
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */
-
+var split = require('emoji-aware').split;
 /**
  * Calculate the position, width and height of a BitmapText Game Object.
  *
@@ -99,10 +99,15 @@ var GetBitmapTextSize = function (src, round, out)
     //  Scan for breach of maxWidth and insert carriage-returns
     if (maxWidth > 0)
     {
-        for (i = 0; i < textLength; i++)
+        var textChars = split(text);
+        for (i = 0; i < textChars.length; i++)
         {
-            charCode = text.codePointAt(i);
-
+            // charCode = text.codePointAt(i);
+            charCode = '';
+            for(var j = 0; j<textChars[i].length; j++) {
+                charCode += textChars[i].codePointAt(j); + ' ';
+            }
+            charCode.trim();
             if (charCode === 10)
             {
                 if (current !== null)
