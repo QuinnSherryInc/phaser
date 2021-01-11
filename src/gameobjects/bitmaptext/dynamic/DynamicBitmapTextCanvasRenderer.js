@@ -107,7 +107,7 @@ var DynamicBitmapTextCanvasRenderer = function (renderer, src, interpolationPerc
 
         // charCode = text.codePointAt(i);
         charCode = '';
-        for(var j = 0; j<textChars[i].length; j++) {
+        for(var j = 0; j<[...textChars[i]].length; j++) {
             charCode += textChars[i].codePointAt(j); + ' ';
         }
         charCode.trim();
