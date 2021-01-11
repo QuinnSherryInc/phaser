@@ -130,7 +130,7 @@ var BitmapTextWebGLRenderer = function (renderer, src, interpolationPercentage, 
         for(var j = 0; j<[...textChars[i]].length; j++) {
             charCode += textChars[i].codePointAt(j); + ' ';
         }
-        charCode.trim();
+        charCode = charCode.trim();
         //  Carriage-return
         if (charCode === 10)
         {

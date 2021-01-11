@@ -106,7 +106,7 @@ var GetBitmapTextSize = function (src, round, out)
             for(var j = 0; j<[...textChars[i]].length; j++) {
                 charCode += textChars[i].codePointAt(j); + ' ';
             }
-            charCode.trim();
+            charCode = charCode.trim();
             if (charCode === 10)
             {
                 if (current !== null)
@@ -273,6 +273,7 @@ var GetBitmapTextSize = function (src, round, out)
         for(var j = 0; j<[...textChars[i]].length; j++) {
             charCode += textChars[i].codePointAt(j); + ' ';
         }
+        charCode = charCode.trim()
 
         if (charCode === 10)
         {
