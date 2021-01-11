@@ -95,11 +95,10 @@ var GetBitmapTextSize = function (src, round, out)
     var i;
     var words = [];
     var current = null;
-
+    var textChars = split(text);
     //  Scan for breach of maxWidth and insert carriage-returns
     if (maxWidth > 0)
     {
-        var textChars = split(text);
         for (i = 0; i < textChars.length; i++)
         {
             // charCode = text.codePointAt(i);
@@ -265,10 +264,15 @@ var GetBitmapTextSize = function (src, round, out)
         words = [];
         current = null;
     }
-
-    for (i = 0; i < textLength; i++)
+    textChars = split(text);
+    for (i = 0; i < textChars.length; i++)
     {
-        charCode = text.codePointAt(i);
+        
+        //charCode = text.codePointAt(i);
+        charCode = '';
+        for(var j = 0; j<[...textChars[i]].length; j++) {
+            charCode += textChars[i].codePointAt(j); + ' ';
+        }
 
         if (charCode === 10)
         {
